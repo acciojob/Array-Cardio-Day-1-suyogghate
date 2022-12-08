@@ -29,40 +29,54 @@ const people = [
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's and return the filtered array
 export function myfilter() {
-
+    const filteredArray = inventors.filter(inventor => ((inventor.year > 1500) && (inventor.year < 1600)));
+    return filteredArray;
 }
 
 // Array.prototype.map()
 // 2. Give us an array of the inventor first and last names (i.e. full name)
 // Ex: For the first inventor the full name will be 'Albert Einstein'
 export function map() {
+    const first_last_name = [];
 
+    const filteredArray = inventors.map(inventor => first_last_name.push(inventor.first+" "+inventor.last));
+
+    return first_last_name;
 }
-
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest and return the sorted array
 export function sort() {
-
+    const sortedObject = (inventors.sort((a, b) => a.year-b.year));
+    return sortedObject;
 }
-
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live?
 // Return the total number of years all the inventors lived
 export function reduce() {
+    let yearsArray = [];
 
+    const yearsLived = inventors.map(inventor => yearsArray.push(inventor.passed-inventor.year));
+
+    const totalYears = yearsArray.reduce((prev, curr) => {
+        return prev+curr;
+    })
+
+    return totalYears;
 }
 
 // 5. Sort the inventors by years lived and return the sorted array
 export function sortbylived() {
-
+    const lived = inventors.sort((a, b) => (b.passed - b.year - (a.passed - a.year)));
+    return lived;
 }
 
 // 6. sort Exercise
 // Sort the people alphabetically by last name and return the sorted array
 export function sortByLastName() {
-
+    const sortedAlphabetically = people.sort();
+    return sortedAlphabetically;
 }
 
 // 7. Reduce Exercise
@@ -71,4 +85,16 @@ const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bik
 
 export function reducedSum() {
     // Return an object containing transports as key and its number of occurances as the key's value
+    const instances = {};
+
+    for(element of data){
+        if(instances[element]){
+            instances[element] += 1;
+        } else {
+            instances[element] = 1;
+        }
+    }
+
+    return instances;
 }
+
